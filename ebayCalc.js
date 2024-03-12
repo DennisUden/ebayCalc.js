@@ -5,6 +5,9 @@ const readline = require("node:readline").createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+
+kategorie_input = "";
+
 const recursiveAsyncReadLine = function () {
   readline.question(`Verkaufspreis_Ebay: `, (verkaufspreis_input) => {
 
@@ -31,7 +34,10 @@ const recursiveAsyncReadLine = function () {
 //      console.log(`\x1b[33m Umsatz: ${umsatz} \x1b[0m`);
 //      console.log(`\x1b[31m Kosten: ${kosten} \x1b[0m`);
 //      console.log(`\x1b[32m Gewinn: ${gewinn} \x1b[0m`);
-      ebayProvision = Math.min(990,verkaufspreis_toFloat)*11/100 + Math.max(0,verkaufspreis_toFloat-990)*2/100;
+//      if (kategorie_input == "boote") {let ebayProvision = Math.min(990,verkaufspreis_toFloat)*11/100 + Math.max(0,verkaufspreis_toFloat-990)*2/100;}
+//      if (kategorie_input == "garten") {let ebayProvision = Math.min(200,verkaufspreis_toFloat)*12/100 + Math.max(0,verkaufspreis_toFloat-200)*2/100;}
+      if (kategorie_input == "boote") {ebayProvision = Math.min(990,verkaufspreis_toFloat)*11/100 + Math.max(0,verkaufspreis_toFloat-990)*2/100;}
+      if (kategorie_input == "garten") {ebayProvision = Math.min(200,verkaufspreis_toFloat)*12/100 + Math.max(0,verkaufspreis_toFloat-200)*2/100;}
       versandkosten = 5.5;
       verkaufspreis_ebay_netto = verkaufspreis_toFloat/1.19; 
       verkaufspreis_ebay_netto_minusAbgaben = verkaufspreis_ebay_netto - ebayProvision - versandkosten;
@@ -87,7 +93,10 @@ readline.question(`Artikeleinkaufspreis: `, (artikeleinkaufspreis_input) => {
       //          console.log(`Menge value is: ${menge_toFloat}\nand the type: ${typeof(menge_toFloat)}`);
       //          console.log(`Menge * Artikeleinkaufspreis = ${menge_toFloat*artikeleinkaufspreis_toFloat}`);
       //     readline.close();
-      recursiveAsyncReadLine();
+      readline.question(`Kategorie (boote oder garten): `, (kategorie) => {
+        kategorie_input = kategorie;
+        recursiveAsyncReadLine();
+      });
     });
   });
 });
