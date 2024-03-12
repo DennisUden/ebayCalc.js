@@ -31,7 +31,7 @@ const recursiveAsyncReadLine = function () {
 //      console.log(`\x1b[33m Umsatz: ${umsatz} \x1b[0m`);
 //      console.log(`\x1b[31m Kosten: ${kosten} \x1b[0m`);
 //      console.log(`\x1b[32m Gewinn: ${gewinn} \x1b[0m`);
-      ebayProvision = Math.min(99,(verkaufspreis_toFloat/100*12)+0.35);
+      ebayProvision = Math.min(990,verkaufspreis_toFloat)*11/100 + Math.max(0,verkaufspreis_toFloat-990)*2/100;
       versandkosten = 5.5;
       verkaufspreis_ebay_netto = verkaufspreis_toFloat/1.19; 
       verkaufspreis_ebay_netto_minusAbgaben = verkaufspreis_ebay_netto - ebayProvision - versandkosten;
